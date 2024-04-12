@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Playing Card</title>
+</head>
+<body>
+  <button onclick="generateRandomCard()">Generate Random Card</button>
+  <br><br>
+  <img id="cardImage" src="" alt="Card Image">
+  
+  <script>
+    const cardImages = [
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k2.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k3.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k4.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k5.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k6.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k7.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k8.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k9.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/k10.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/kj.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/kq.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png',
+    //clubs above
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/sa.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s2.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s3.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s4.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s5.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s6.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s7.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s8.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s9.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/s10.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/sj.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/sq.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/sk.png',
+    //heart above
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/pa.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p2.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p3.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p4.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p5.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p6.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p7.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p8.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p9.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/p10.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/pj.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/pq.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/pk.png',
+    //spade above
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/la.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l2.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l3.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l5.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l6.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l7.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l8.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l9.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/l10.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/lj.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/lq.png',
+    'https://www.improvemagic.com/wp-content/uploads/2020/11/lk.png'
+
+      // Add image URLs for all 52 cards here
+    ];
+
+    // Function to generate a random integer between min and max (inclusive)
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Function to generate a random card image
+    function generateRandomCard() {
+      const randomNumber = getRandomInt(0, cardImages.length); // Generate a random index
+      const imagePath = cardImages[randomNumber]; // Get the image URL from the array
+      document.getElementById('cardImage').src = imagePath;
+    }
+  </script>
+</body>
+</html>
