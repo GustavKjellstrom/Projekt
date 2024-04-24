@@ -2,111 +2,178 @@
 <html lang="en">
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <title>Felix Poker</title>
+    <link rel="icon" href="//cdn-icons-png.flaticon.com/128/445/445076.png">
+
 <style>
-.a.start:link{
-    color:black;
-    background-color: transparent;
-    text-decoration: none;
-}
+
+
+.myButton {
+color: rgb(0, 0, 0); font-size: 13px; line-height: 13px; padding: 10px; border-radius: 8px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+.myButton:hover {
+background: #1ca49b; }
+.myButton:active {
+background: #144E75; }
 </style>
+</head>
+<body>
+<button class="myButton" onclick="randomCard()">Own cards</button>
+<br><br>
+<div id="cardContainer">
+  <img class="cardImage" src="" alt="card">
+  <img class="cardImage" src="" alt="card">
+</div>
+<br><br>
+<button class="myButton" onclick="flop()">flop</button>
+<br><br>
+<div id="3-cards">
+  <img class="flopImage" src="" alt="card">
+  <img class="flopImage" src="" alt="card">
+  <img class="flopImage" src="" alt="card">
+</div>
+<br><br>
+<button class="myButton" onclick="turn()">turn</button>
+<br><br>
+<div id="turn">
+  <img class="turnImage" src="" alt="card">
+</div>
+<br><br>
+<button class="myButton" onclick="river()">river</button>
+<br><br>
+<div id="river">
+  <img class="riverImage" src="" alt="card">
+</div>
+
+</body>
 <script>
-    const allCards=[
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k2.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k3.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k4.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k5.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k6.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k7.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k8.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k9.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/k10.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/kj.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/kq.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png',
-    //clubs above
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/sa.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s2.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s3.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s4.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s5.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s6.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s7.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s8.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s9.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/s10.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/sj.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/sq.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/sk.png',
-    //heart above
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/pa.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p2.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p3.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p4.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p5.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p6.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p7.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p8.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p9.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/p10.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/pj.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/pq.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/pk.png',
-    //spade above
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/la.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l2.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l3.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l5.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l6.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l7.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l8.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l9.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/l10.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/lj.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/lq.png',
-    'https://www.improvemagic.com/wp-content/uploads/2020/11/lk.png'
+const allCards=[
+'https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k2.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k3.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k4.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k5.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k6.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k7.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k8.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k9.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/k10.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/kj.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/kq.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png',
+//clubs above
+'https://www.improvemagic.com/wp-content/uploads/2020/11/sa.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s2.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s3.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s4.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s5.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s6.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s7.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s8.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s9.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/s10.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/sj.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/sq.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/sk.png',
+//heart above
+'https://www.improvemagic.com/wp-content/uploads/2020/11/pa.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p2.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p3.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p4.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p5.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p6.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p7.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p8.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p9.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/p10.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/pj.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/pq.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/pk.png',
+//spade above
+'https://www.improvemagic.com/wp-content/uploads/2020/11/la.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l2.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l3.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l5.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l6.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l7.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l8.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l9.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/l10.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/lj.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/lq.png',
+'https://www.improvemagic.com/wp-content/uploads/2020/11/lk.png'
 
 
-    ]
+]
 
-    function getRandomNumber(min,max){
-        return Math.floor(Math.random() * (max - min + 1) + min);
+function getRandomNumber(min,max){
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+let selectedCards;
+let selectedFlop;
+let selectedTurn;
+let selectedRiver;
+function randomCard() {
+  const cardContainer = document.getElementById('cardContainer');
+  const cardImageElements = cardContainer.getElementsByClassName('cardImage');
+  selectedCards = new Set();
+
+  // Generate two random cards
+  for (let i = 0; i < cardImageElements.length; i++) {
+    let randomNumber;
+    do {
+      randomNumber = getRandomNumber(0, allCards.length-1);
+    } while (selectedCards.has(randomNumber)); // Ensure no duplicates
+    selectedCards.add(randomNumber);
+    cardImageElements[i].src = allCards[randomNumber];
+  }
+}
+
+function flop(){
+    const flopCards = document.getElementById('3-cards');
+    const flopImages = flopCards.getElementsByClassName('flopImages');
+    selectedFlop = new Set();
+    
+    for(let j = 0; j< flopImages.length;j++){
+      let randomNumberFlop;
+    do{ 
+      randomNumberFlop = getRandomNumber(0,allCards.length-1);
+    } while (selectedFlop.size < 3 && selectedCards.has(randomNumberFlop) && selectedFlop.has(randomNumberFlop));
+        selectedFlop.add(randomNumberFlop);
+        flopImages[j].src = allCards[randomNumberFlop]
+      
     }
-    let selectedCards;
-    function randomCard() {
-      const cardContainer = document.getElementById('cardContainer');
-      const cardImageElements = cardContainer.getElementsByClassName('cardImage');
-      selectedCards = new Set();
+  }
 
-      // Generate two random cards
-      for (let i = 0; i < cardImageElements.length; i++) {
-        let randomNumber;
-        do {
-          randomNumber = getRandomNumber(0, allCards.length - 1);
-        } while (selectedCards.has(randomNumber)); // Ensure no duplicates
-        selectedCards.add(randomNumber);
-        cardImageElements[i].src = allCards[randomNumber];
-      }
-    }
+function turn(){
+  const turnCard = document.getElementById('turn');
+  const turnImage = turnCard.getElementsByClassName('turnImage')
+  selectedTurn = new Set();
 
-    function flop(){
-        const flopCards = document.getElementById('3-cards');
-        const flopImages = flopCards.getElementById('flopImages');
-        const selectedFlop = new Set();
-        
-        for(let j = 0; j< flopImages.length;i++){
-          let randomNumberFlop;
-        do{ 
-          randomNumberFlop = getRandomNumber(0,allCards.length-1);
-        } while (selectedFlop.size < 3 && selectedCards.has(randomNumberFlop) && selectedFlop.has(randomNumberFlop));
-            selectedFlop.add(randomNumberFlop);
-            flopImages[j].src = allCards[randomNumberFlop]
-          
-        }
-      }
+  for(let k = 0; k<turnImage.length;k++){
+    let randomNumberTurn;
+  do{
+    randomNumberTurn = getRandomNumber(0,allCards.length-1);
+  } while (selectedCards.has(randomNumberTurn) && selectedFlop.has(randomNumberTurn) && selectedTurn.has(randomNumberTurn));
+      selectedTurn.add(randomNumberTurn);
+      turnImage[k].src=allCards[randomNumberTurn]
+  }
+}
 
+function river(){
+  const riverCard = document.getElementById('river');
+  const riverImage = riverCard.getElementsByClassName('riverImage')
+  selectedRiver = new Set();
+
+  for (let m = 0; m<riverImage.length;m++){
+    let randomNumberRiver;
+  do{
+    randomNumberRiver = getRandomNumber(0,allCards.length-1);
+  } while(selectedCards.has(randomNumberRiver) && selectedFlop.has(randomNumberRiver) && selectedTurn.has(randomNumberRiver) && selectedRiver.has(randomNumberRiver))
+      selectedRiver.add(randomNumberRiver);
+      riverImage[m].src=allCards[randomNumberRiver]
+  }
+}
 </script>
     </html>
 
