@@ -9,42 +9,65 @@
 
 
 .myButton {
-color: rgb(0, 0, 0); font-size: 13px; line-height: 13px; padding: 10px; border-radius: 8px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+color: rgb(0, 0, 0); 
+font-size: 13px; 
+line-height: 13px; 
+padding: 10px; 
+border-radius: 8px; 
+font-family: Georgia, serif; 
+font-weight: normal; 
+text-decoration: none; 
+font-style: normal; 
+font-variant: normal; 
+text-transform: none; 
+background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); 
+box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); 
+display: inline-block;
+margin-left:50px;
+}
+
 .myButton:hover {
 background: #1ca49b; }
 .myButton:active {
 background: #144E75; }
+
+.hiddencards{
+  margin-left:100px;
+}
 </style>
 </head>
 <body>
+<h1>Felix poker hemsida</h1>
+<br><br>
+<div class="hiddencards"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="300" width="auto"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="300" width="200"></div>
 <button class="myButton" onclick="randomCard()">Own cards</button>
 <br><br>
 <div id="cardContainer">
-  <img class="cardImage" src="" alt="card">
+  <img class="cardImage" src="" alt="card" height="100px" width="50px">
   <img class="cardImage" src="" alt="card">
 </div>
 <br><br>
 <button class="myButton" onclick="flop()">flop</button>
 <br><br>
 <div id="3-cards">
-  <img class="flopImage" src="" alt="card">
-  <img class="flopImage" src="" alt="card">
-  <img class="flopImage" src="" alt="card">
+  <img class="flopImages" src="" alt="card">
+  <img class="flopImages" src="" alt="card">
+  <img class="flopImages" src="" alt="card">
 </div>
 <br><br>
 <button class="myButton" onclick="turn()">turn</button>
 <br><br>
 <div id="turn">
-  <img class="turnImage" src="" alt="card">
+  <img class="turnImages" src="" alt="card">
 </div>
 <br><br>
 <button class="myButton" onclick="river()">river</button>
 <br><br>
 <div id="river">
-  <img class="riverImage" src="" alt="card">
+  <img class="riverImages" src="" alt="card">
 </div>
 
-</body>
+
 <script>
 const allCards=[
 'https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png',
@@ -131,23 +154,22 @@ function randomCard() {
 
 function flop(){
     const flopCards = document.getElementById('3-cards');
-    const flopImages = flopCards.getElementsByClassName('flopImages');
+    const flopImage = flopCards.getElementsByClassName('flopImages');
     selectedFlop = new Set();
     
-    for(let j = 0; j< flopImages.length;j++){
+    for(let j = 0; j< flopImage.length;j++){
       let randomNumberFlop;
     do{ 
       randomNumberFlop = getRandomNumber(0,allCards.length-1);
     } while (selectedFlop.size < 3 && selectedCards.has(randomNumberFlop) && selectedFlop.has(randomNumberFlop));
         selectedFlop.add(randomNumberFlop);
-        flopImages[j].src = allCards[randomNumberFlop]
-      
+        flopImage[j].src = allCards[randomNumberFlop]
     }
   }
 
 function turn(){
   const turnCard = document.getElementById('turn');
-  const turnImage = turnCard.getElementsByClassName('turnImage')
+  const turnImage = turnCard.getElementsByClassName('turnImages')
   selectedTurn = new Set();
 
   for(let k = 0; k<turnImage.length;k++){
@@ -162,7 +184,7 @@ function turn(){
 
 function river(){
   const riverCard = document.getElementById('river');
-  const riverImage = riverCard.getElementsByClassName('riverImage')
+  const riverImage = riverCard.getElementsByClassName('riverImages')
   selectedRiver = new Set();
 
   for (let m = 0; m<riverImage.length;m++){
@@ -175,5 +197,6 @@ function river(){
   }
 }
 </script>
+</body>
     </html>
 
