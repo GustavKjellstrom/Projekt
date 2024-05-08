@@ -8,6 +8,7 @@
 <style>
 
 
+
 .myButton {
 color: rgb(0, 0, 0); 
 font-size: 13px; 
@@ -23,7 +24,7 @@ text-transform: none;
 background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); 
 box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); 
 display: inline-block;
-margin-left:50px;
+margin-left:40%;
 }
 
 .myButton:hover {
@@ -32,40 +33,86 @@ background: #1ca49b; }
 background: #144E75; }
 
 .hiddencards{
-  margin-left:100px;
+  margin-left:43%;
+}
+
+.opponent{
+  margin-left:45%;
+}
+
+.cardImage{
+  display: inline-block;
+  justify-content: center;
+}
+
+.flopImages{
+  display: inline-block;
+  justify-content: center;
+}
+
+.turnImages{
+  display: inline-block;
+  left: 45px;
+}
+
+.riverImages{
+  display: inline-block;
+  justify-content: center;
+}
+
+.cardContainer {
+  left:45%;
+  align-items: center;
+  position: relative;
+}
+.three_cardss {
+  left:45%;
+  align-items: center;
+  position: relative;
+}
+.turn2 {
+  left:45%;
+  align-items: center;
+  position: relative;
+}
+.river2 {
+  left:45%;
+  align-items: center;
+  position: relative;
 }
 </style>
 </head>
 <body>
 <h1>Felix poker hemsida</h1>
-<br><br>
-<div class="hiddencards"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="300" width="auto"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="300" width="200"></div>
+<div class="opponent"><img src="https://p7.hiclipart.com/preview/218/926/400/stick-man-stick-figure-clip-art-happy-stick-man.jpg" height="100" width="auto"></div>
+<div class="hiddencards"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"></div>
+<br><br><br>
+<div class="three_cardss">
+<div id="three_cards">
+  <img class="flopImages" src="" alt="card" height="120px" width="auto">
+  <img class="flopImages" src="" alt="card" height="120px" width="auto">
+  <img class="flopImages" src="" alt="card" height="120px" width="auto">
+</div>
+<div id="turn">
+  <img class="turnImages" src="" alt="card" height="120px" width="auto">
+</div>
+<div id="river">
+  <img class="riverImages" src="" alt="card" height="120px" width="auto">
+</div>
+</div>
+
+<br><br><br><br><br>
 <button class="myButton" onclick="randomCard()">Own cards</button>
 <br><br>
-<div id="cardContainer">
-  <img class="cardImage" src="" alt="card" height="100px" width="50px">
-  <img class="cardImage" src="" alt="card">
+<div id="cardContainer" class="cardContainer">
+  <img class="cardImage" src="" alt="card" height="120px" width="auto">
+  <img class="cardImage" src="" alt="card" height="120px" width="auto">
 </div>
 <br><br>
 <button class="myButton" onclick="flop()">flop</button>
-<br><br>
-<div id="3-cards">
-  <img class="flopImages" src="" alt="card">
-  <img class="flopImages" src="" alt="card">
-  <img class="flopImages" src="" alt="card">
-</div>
-<br><br>
 <button class="myButton" onclick="turn()">turn</button>
-<br><br>
-<div id="turn">
-  <img class="turnImages" src="" alt="card">
-</div>
-<br><br>
 <button class="myButton" onclick="river()">river</button>
-<br><br>
-<div id="river">
-  <img class="riverImages" src="" alt="card">
-</div>
+
 
 
 <script>
@@ -153,7 +200,7 @@ function randomCard() {
 }
 
 function flop(){
-    const flopCards = document.getElementById('3-cards');
+    const flopCards = document.getElementById('three_cards');
     const flopImage = flopCards.getElementsByClassName('flopImages');
     selectedFlop = new Set();
     
