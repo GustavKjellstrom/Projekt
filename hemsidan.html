@@ -7,8 +7,6 @@
 
 <style>
 
-
-
 .myButton {
 color: rgb(0, 0, 0); 
 font-size: 13px; 
@@ -25,11 +23,61 @@ background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 2
 box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); 
 display: inline-block;
 margin-left:40%;
+position: absolute;
+margin-top: -10px;
+}
+
+.myButton2 {
+color: rgb(0, 0, 0); 
+font-size: 13px; 
+line-height: 13px; 
+padding: 10px; 
+border-radius: 8px; 
+font-family: Georgia, serif; 
+font-weight: normal; 
+text-decoration: none; 
+font-style: normal; 
+font-variant: normal; 
+text-transform: none; 
+background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); 
+box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); 
+display: inline-block;
+left: 49%;
+position: absolute;
+margin-top: -10px;
+}
+
+.myButton3 {
+color: rgb(0, 0, 0); 
+font-size: 13px; 
+line-height: 13px; 
+padding: 10px; 
+border-radius: 8px; 
+font-family: Georgia, serif; 
+font-weight: normal; 
+text-decoration: none; 
+font-style: normal; 
+font-variant: normal; 
+text-transform: none; 
+background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); 
+box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); 
+display: inline-block;
+left: 55%;
+position: absolute;
+margin-top: -10px;
 }
 
 .myButton:hover {
 background: #1ca49b; }
 .myButton:active {
+background: #144E75; }
+.myButton2:hover {
+background: #1ca49b; }
+.myButton2:active {
+background: #144E75; }
+.myButton3:hover {
+background: #1ca49b; }
+.myButton3:active {
 background: #144E75; }
 
 .hiddencards{
@@ -47,71 +95,122 @@ background: #144E75; }
 
 .flopImages{
   display: inline-block;
-  justify-content: center;
 }
 
 .turnImages{
   display: inline-block;
-  left: 45px;
 }
 
 .riverImages{
   display: inline-block;
-  justify-content: center;
 }
 
 .cardContainer {
-  left:45%;
+  left:43%;
   align-items: center;
   position: relative;
 }
 .three_cardss {
   left:45%;
-  align-items: center;
-  position: relative;
+  text-align: center;
 }
-.turn2 {
-  left:45%;
-  align-items: center;
-  position: relative;
+
+.poker-image{
+  z-index: -1;
+  position: absolute;
 }
-.river2 {
-  left:45%;
-  align-items: center;
-  position: relative;
+.poker-chips{
+  z-index: -1;
+  position:absolute;
+  left: 65%;
+  height: 50px;
+  width: auto;
 }
+
+.antal-chips1{
+  z-index: -1;
+  position: absolute;
+  left: 66%;
+  margin-top: 5%;
+}
+
+.antal-chips2{
+  z-index: -1;
+  position: absolute;
+  left: 66%;
+  margin-top: 5%;
+}
+
+.pot{
+  z-index: -1;
+  position: absolute;
+  left: 75%;
+  height: 50px;
+  width: auto;
+}
+
+.pot-size{
+  z-index: -1;
+  position: absolute;
+  left: 77%;
+  margin-top: 5%;
+}
+
+.bettingstack{
+  z-index: -1;
+  position: absolute;
+  height:50px;
+  width: auto;
+  left:70%
+}
+.bettingchips{
+  z-index: -1;
+  position: absolute;
+  left: 72%;
+  margin-top: 5%;
+}
+
+
 </style>
 </head>
 <body>
 <h1>Felix poker hemsida</h1>
 <div class="opponent"><img src="https://p7.hiclipart.com/preview/218/926/400/stick-man-stick-figure-clip-art-happy-stick-man.jpg" height="100" width="auto"></div>
-<div class="hiddencards"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"><img src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"></div>
-<br><br><br>
+<img class="poker-chips" src="https://www.bmfgintl.com/wp-content/uploads/2020/09/PCD01_Red-600x600.jpg">
+<div class="antal-chips1">100</div>
+<div class="hiddencards" id="villan"><img class="villanImages" src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"><img class="villanImages" src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"></div>
+<br>
+<img class="poker-image" src="https://cms.rationalcdn.com/v3/assets/blteecf9626d9a38b03/blt450033430217f659/6358023fceefe870a18bf95f/Poker-Carousel-Images_NoLimitHoldem.jpg" height="300" width="auto">
+<img class="pot" src="https://pluspng.com/img-png/poker-chips-png-hd-casino-chips-poker-chips-14g-new-poker-chips-casino-chips-high-quality-lowest-price-900.jpg">
+<div class="pot-size">5</div>
 <div class="three_cardss">
 <div id="three_cards">
+  <div id="turn">
+  <div id="river">
   <img class="flopImages" src="" alt="card" height="120px" width="auto">
   <img class="flopImages" src="" alt="card" height="120px" width="auto">
   <img class="flopImages" src="" alt="card" height="120px" width="auto">
-</div>
-<div id="turn">
   <img class="turnImages" src="" alt="card" height="120px" width="auto">
-</div>
-<div id="river">
   <img class="riverImages" src="" alt="card" height="120px" width="auto">
 </div>
 </div>
-
-<br><br><br><br><br>
-<button class="myButton" onclick="randomCard()">Own cards</button>
+</div>
+</div>
+<br>
+<button id="destroyButton" class="myButton" onclick="randomCard()">Own cards</button>
+<button class="myButton2" onclick="flop()">Check</button>
+<button class="myButton3" onclick="bet()">Bet</button>
 <br><br>
+<img class="poker-chips" src="https://www.bmfgintl.com/wp-content/uploads/2020/09/PCD01_Red-600x600.jpg"> 
+<img class="bettingstack" src="https://www.bmfgintl.com/wp-content/uploads/2020/09/DEC01_ORANGE-600x600.jpg">
+<div class="bettingchips">0</div>
+<div class="antal-chips2">100</div>
 <div id="cardContainer" class="cardContainer">
   <img class="cardImage" src="" alt="card" height="120px" width="auto">
   <img class="cardImage" src="" alt="card" height="120px" width="auto">
 </div>
-<br><br>
-<button class="myButton" onclick="flop()">flop</button>
-<button class="myButton" onclick="turn()">turn</button>
-<button class="myButton" onclick="river()">river</button>
+
+
 
 
 
@@ -183,67 +282,110 @@ let selectedCards;
 let selectedFlop;
 let selectedTurn;
 let selectedRiver;
+let buttonFunction=0
+
+const destroyButton =document.getElementById('destroyButton')
+  destroyButton.addEventListener('click', function() {
+    // Remove the button from the DOM
+    destroyButton.parentNode.removeChild(destroyButton);
+});
+
 function randomCard() {
   const cardContainer = document.getElementById('cardContainer');
   const cardImageElements = cardContainer.getElementsByClassName('cardImage');
   selectedCards = new Set();
+  buttonFunction+=1
+
+
+
 
   // Generate two random cards
   for (let i = 0; i < cardImageElements.length; i++) {
     let randomNumber;
     do {
-      randomNumber = getRandomNumber(0, allCards.length-1);
+      randomNumber = getRandomNumber(0, 52);
     } while (selectedCards.has(randomNumber)); // Ensure no duplicates
     selectedCards.add(randomNumber);
     cardImageElements[i].src = allCards[randomNumber];
   }
 }
-
 function flop(){
+if(buttonFunction==1){
     const flopCards = document.getElementById('three_cards');
     const flopImage = flopCards.getElementsByClassName('flopImages');
     selectedFlop = new Set();
+    buttonFunction+=1
     
     for(let j = 0; j< flopImage.length;j++){
       let randomNumberFlop;
     do{ 
-      randomNumberFlop = getRandomNumber(0,allCards.length-1);
+      randomNumberFlop = getRandomNumber(0,52);
     } while (selectedFlop.size < 3 && selectedCards.has(randomNumberFlop) && selectedFlop.has(randomNumberFlop));
         selectedFlop.add(randomNumberFlop);
         flopImage[j].src = allCards[randomNumberFlop]
     }
   }
 
-function turn(){
+else if(buttonFunction==2){
   const turnCard = document.getElementById('turn');
   const turnImage = turnCard.getElementsByClassName('turnImages')
   selectedTurn = new Set();
+  buttonFunction+=1
 
   for(let k = 0; k<turnImage.length;k++){
     let randomNumberTurn;
   do{
-    randomNumberTurn = getRandomNumber(0,allCards.length-1);
+    randomNumberTurn = getRandomNumber(0,52);
   } while (selectedCards.has(randomNumberTurn) && selectedFlop.has(randomNumberTurn) && selectedTurn.has(randomNumberTurn));
       selectedTurn.add(randomNumberTurn);
       turnImage[k].src=allCards[randomNumberTurn]
   }
 }
 
-function river(){
+else if (buttonFunction==3){
   const riverCard = document.getElementById('river');
   const riverImage = riverCard.getElementsByClassName('riverImages')
   selectedRiver = new Set();
+  buttonFunction+=1
 
   for (let m = 0; m<riverImage.length;m++){
     let randomNumberRiver;
   do{
-    randomNumberRiver = getRandomNumber(0,allCards.length-1);
+    randomNumberRiver = getRandomNumber(0,52);
   } while(selectedCards.has(randomNumberRiver) && selectedFlop.has(randomNumberRiver) && selectedTurn.has(randomNumberRiver) && selectedRiver.has(randomNumberRiver))
       selectedRiver.add(randomNumberRiver);
       riverImage[m].src=allCards[randomNumberRiver]
   }
 }
+else if(buttonFunction==4){
+  const villanCards=document.getElementById('villan')
+  const villanImage = villanCards.getElementsByClassName('villanImages')
+  selectedVillanCard = new Set();
+
+  for (let n = 0; n<villanImage.length;n++){
+    let randomNumberVillan;
+  do{
+    randomNumberVillan=getRandomNumber(0,52);
+  } while (selectedCards.has(randomNumberVillan) && selectedFlop.has(randomNumberVillan) && selectedTurn.has(randomNumberVillan) && selectedRiver.has(randomNumberVillan) && selectedVillanCard.has(randomNumberVillan))
+      selectedVillanCard.add(randomNumberVillan);
+      villanImage[n].src=allCards[randomNumberVillan]
+}
+}
+}
+function bet(){
+  let minaChips=document.getElementsByClassName('antal-chips2')[0]
+  let villanChips=document.getElementsByClassName('antal-chips1')[0]
+  let potten=document.getElementsByClassName('pot-size')[0]
+  let bettingchips=document.getElementsByClassName("bettingchips")[0]
+
+
+  minaChips.textContent = parseInt(minaChips.textContent) - 1;
+  villanChips.textContent = parseInt(villanChips.textContent) - 1;
+  potten.textContent = parseInt(potten.textContent) + 2;
+
+  bettingchips.textContent = parseInt(bettingchips.textContent) + 1;
+
+}
 </script>
 </body>
     </html>
-
