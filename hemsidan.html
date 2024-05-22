@@ -187,11 +187,11 @@ background: #144E75; }
 <div id="three_cards">
   <div id="turn">
   <div id="river">
-  <img class="flopImages" src="" alt="card" height="120px" width="auto">
-  <img class="flopImages" src="" alt="card" height="120px" width="auto">
-  <img class="flopImages" src="" alt="card" height="120px" width="auto">
-  <img class="turnImages" src="" alt="card" height="120px" width="auto">
-  <img class="riverImages" src="" alt="card" height="120px" width="auto">
+  <img class="flopImages" src="" alt="" height="120px" width="auto">
+  <img class="flopImages" src="" alt="" height="120px" width="auto">
+  <img class="flopImages" src="" alt="" height="120px" width="auto">
+  <img class="turnImages" src="" alt="" height="120px" width="auto">
+  <img class="riverImages" src="" alt="" height="120px" width="auto">
 </div>
 </div>
 </div>
@@ -206,8 +206,8 @@ background: #144E75; }
 <div class="bettingchips">0</div>
 <div class="antal-chips2">100</div>
 <div id="cardContainer" class="cardContainer">
-  <img class="cardImage" src="" alt="card" height="120px" width="auto">
-  <img class="cardImage" src="" alt="card" height="120px" width="auto">
+  <img class="cardImage" src="" alt="" height="120px" width="auto">
+  <img class="cardImage" src="" alt="" height="120px" width="auto">
 </div>
 
 
@@ -278,11 +278,14 @@ const allCards=[
 function getRandomNumber(min,max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-let selectedCards;
-let selectedFlop;
-let selectedTurn;
-let selectedRiver;
-let buttonFunction=0
+let selectedCards = new Set();
+let buttonFunction=0;
+let calling=0;
+
+let villanChips=document.getElementsByClassName('antal-chips1')[0]
+let potten=document.getElementsByClassName('pot-size')[0]
+let bettingchips=document.getElementsByClassName("bettingchips")[0]
+
 
 const destroyButton =document.getElementById('destroyButton')
   destroyButton.addEventListener('click', function() {
@@ -293,17 +296,15 @@ const destroyButton =document.getElementById('destroyButton')
 function randomCard() {
   const cardContainer = document.getElementById('cardContainer');
   const cardImageElements = cardContainer.getElementsByClassName('cardImage');
-  selectedCards = new Set();
+
   buttonFunction+=1
-
-
 
 
   // Generate two random cards
   for (let i = 0; i < cardImageElements.length; i++) {
     let randomNumber;
     do {
-      randomNumber = getRandomNumber(0, 52);
+      randomNumber = getRandomNumber(0, 51);
     } while (selectedCards.has(randomNumber)); // Ensure no duplicates
     selectedCards.add(randomNumber);
     cardImageElements[i].src = allCards[randomNumber];
@@ -313,15 +314,20 @@ function flop(){
 if(buttonFunction==1){
     const flopCards = document.getElementById('three_cards');
     const flopImage = flopCards.getElementsByClassName('flopImages');
-    selectedFlop = new Set();
+    
     buttonFunction+=1
+
+  potten.textContent = parseInt(potten.textContent) + 2*calling;
+  villanChips.textContent = parseInt(villanChips.textContent) - calling;
+  calling=0;
+  bettingchips.textContent =0;
     
     for(let j = 0; j< flopImage.length;j++){
       let randomNumberFlop;
     do{ 
-      randomNumberFlop = getRandomNumber(0,52);
-    } while (selectedFlop.size < 3 && selectedCards.has(randomNumberFlop) && selectedFlop.has(randomNumberFlop));
-        selectedFlop.add(randomNumberFlop);
+      randomNumberFlop = getRandomNumber(0,51);
+    } while (selectedCards.has(randomNumberFlop) );
+        selectedCards.add(randomNumberFlop);
         flopImage[j].src = allCards[randomNumberFlop]
     }
   }
@@ -329,15 +335,20 @@ if(buttonFunction==1){
 else if(buttonFunction==2){
   const turnCard = document.getElementById('turn');
   const turnImage = turnCard.getElementsByClassName('turnImages')
-  selectedTurn = new Set();
+
   buttonFunction+=1
+
+  potten.textContent = parseInt(potten.textContent) + 2*calling;
+  villanChips.textContent = parseInt(villanChips.textContent) - calling;
+  calling=0
+  bettingchips.textContent =0
 
   for(let k = 0; k<turnImage.length;k++){
     let randomNumberTurn;
   do{
-    randomNumberTurn = getRandomNumber(0,52);
-  } while (selectedCards.has(randomNumberTurn) && selectedFlop.has(randomNumberTurn) && selectedTurn.has(randomNumberTurn));
-      selectedTurn.add(randomNumberTurn);
+    randomNumberTurn = getRandomNumber(0,51);
+  } while (selectedCards.has(randomNumberTurn));
+      selectedCards.add(randomNumberTurn);
       turnImage[k].src=allCards[randomNumberTurn]
   }
 }
@@ -345,45 +356,51 @@ else if(buttonFunction==2){
 else if (buttonFunction==3){
   const riverCard = document.getElementById('river');
   const riverImage = riverCard.getElementsByClassName('riverImages')
-  selectedRiver = new Set();
+  
   buttonFunction+=1
+
+  potten.textContent = parseInt(potten.textContent) + 2*calling;
+  villanChips.textContent = parseInt(villanChips.textContent) - calling;
+  calling=0
+  bettingchips.textContent =0
 
   for (let m = 0; m<riverImage.length;m++){
     let randomNumberRiver;
   do{
-    randomNumberRiver = getRandomNumber(0,52);
-  } while(selectedCards.has(randomNumberRiver) && selectedFlop.has(randomNumberRiver) && selectedTurn.has(randomNumberRiver) && selectedRiver.has(randomNumberRiver))
-      selectedRiver.add(randomNumberRiver);
+    randomNumberRiver = getRandomNumber(0,51);
+  } while(selectedCards.has(randomNumberRiver))
+      selectedCards.add(randomNumberRiver);
       riverImage[m].src=allCards[randomNumberRiver]
   }
 }
 else if(buttonFunction==4){
   const villanCards=document.getElementById('villan')
   const villanImage = villanCards.getElementsByClassName('villanImages')
-  selectedVillanCard = new Set();
+  
+  potten.textContent = parseInt(potten.textContent) + 2*calling;
+  villanChips.textContent = parseInt(villanChips.textContent) - calling;
+  calling=0
+  bettingchips.textContent =0
 
   for (let n = 0; n<villanImage.length;n++){
     let randomNumberVillan;
   do{
-    randomNumberVillan=getRandomNumber(0,52);
-  } while (selectedCards.has(randomNumberVillan) && selectedFlop.has(randomNumberVillan) && selectedTurn.has(randomNumberVillan) && selectedRiver.has(randomNumberVillan) && selectedVillanCard.has(randomNumberVillan))
-      selectedVillanCard.add(randomNumberVillan);
+    randomNumberVillan=getRandomNumber(0,51);
+  } while (selectedCards.has(randomNumberVillan) )
+      selectedCards.add(randomNumberVillan);
       villanImage[n].src=allCards[randomNumberVillan]
 }
 }
 }
 function bet(){
   let minaChips=document.getElementsByClassName('antal-chips2')[0]
-  let villanChips=document.getElementsByClassName('antal-chips1')[0]
-  let potten=document.getElementsByClassName('pot-size')[0]
-  let bettingchips=document.getElementsByClassName("bettingchips")[0]
+
 
 
   minaChips.textContent = parseInt(minaChips.textContent) - 1;
-  villanChips.textContent = parseInt(villanChips.textContent) - 1;
-  potten.textContent = parseInt(potten.textContent) + 2;
-
   bettingchips.textContent = parseInt(bettingchips.textContent) + 1;
+
+  calling+=1
 
 }
 </script>
