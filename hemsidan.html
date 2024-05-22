@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.4, minimum-scale=0.4, maximum-scale=0.4">
     <title>Felix Poker</title>
     <link rel="icon" href="//cdn-icons-png.flaticon.com/128/445/445076.png">
 
 <style>
+
 
 .myButton {
 color: rgb(0, 0, 0); 
@@ -118,6 +120,8 @@ background: #144E75; }
 .poker-image{
   z-index: -1;
   position: absolute;
+  height: 300px;
+  width: auto;
 }
 .poker-chips{
   z-index: -1;
@@ -180,7 +184,7 @@ background: #144E75; }
 <div class="antal-chips1">100</div>
 <div class="hiddencards" id="villan"><img class="villanImages" src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"><img class="villanImages" src="//cdn.kibrispdr.org/data/799/playing-card-back-png-16.png" height="120" width="auto"></div>
 <br>
-<img class="poker-image" src="https://cms.rationalcdn.com/v3/assets/blteecf9626d9a38b03/blt450033430217f659/6358023fceefe870a18bf95f/Poker-Carousel-Images_NoLimitHoldem.jpg" height="300" width="auto">
+<img class="poker-image" src="https://cms.rationalcdn.com/v3/assets/blteecf9626d9a38b03/blt450033430217f659/6358023fceefe870a18bf95f/Poker-Carousel-Images_NoLimitHoldem.jpg">
 <img class="pot" src="https://pluspng.com/img-png/poker-chips-png-hd-casino-chips-poker-chips-14g-new-poker-chips-casino-chips-high-quality-lowest-price-900.jpg">
 <div class="pot-size">5</div>
 <div class="three_cardss">
@@ -215,7 +219,7 @@ background: #144E75; }
 
 
 <script>
-const allCards=[
+const allCards=[//Här är en lista på alla kort som jag har
 'https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png',
 'https://www.improvemagic.com/wp-content/uploads/2020/11/k2.png',
 'https://www.improvemagic.com/wp-content/uploads/2020/11/k3.png',
@@ -275,30 +279,29 @@ const allCards=[
 
 ]
 
-function getRandomNumber(min,max){
+function getRandomNumber(min,max){//Genererar nummer mellan min till max
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-let selectedCards = new Set();
-let buttonFunction=0;
+let selectedCards = new Set();//Skapar en set som håller koll på om kortet redan finns. 
+let buttonFunction=0;//Global variabler
 let calling=0;
 
-let villanChips=document.getElementsByClassName('antal-chips1')[0]
+let villanChips=document.getElementsByClassName('antal-chips1')[0]//Några variabler som jag gör global
 let potten=document.getElementsByClassName('pot-size')[0]
 let bettingchips=document.getElementsByClassName("bettingchips")[0]
 
 
-const destroyButton =document.getElementById('destroyButton')
+const destroyButton =document.getElementById('destroyButton')//Tar kort knappen som genererar sina egna 2 kort. 
   destroyButton.addEventListener('click', function() {
     // Remove the button from the DOM
     destroyButton.parentNode.removeChild(destroyButton);
 });
 
-function randomCard() {
+function randomCard() {//Genererar sina 2 kort i början. 
   const cardContainer = document.getElementById('cardContainer');
   const cardImageElements = cardContainer.getElementsByClassName('cardImage');
 
   buttonFunction+=1
-
 
   // Generate two random cards
   for (let i = 0; i < cardImageElements.length; i++) {
@@ -311,13 +314,13 @@ function randomCard() {
   }
 }
 function flop(){
-if(buttonFunction==1){
+if(buttonFunction==1){//Jag har lakt en if sats här för att få knappen att generera olika kort efter varje klick. 
     const flopCards = document.getElementById('three_cards');
     const flopImage = flopCards.getElementsByClassName('flopImages');
     
-    buttonFunction+=1
+    buttonFunction+=1//Gör att nästa gång sker en annan if sats
 
-  potten.textContent = parseInt(potten.textContent) + 2*calling;
+  potten.textContent = parseInt(potten.textContent) + 2*calling;//Lägger till så att om man bettar någonting så läggs det in i potten
   villanChips.textContent = parseInt(villanChips.textContent) - calling;
   calling=0;
   bettingchips.textContent =0;
@@ -332,7 +335,7 @@ if(buttonFunction==1){
     }
   }
 
-else if(buttonFunction==2){
+else if(buttonFunction==2){//Samma kod som ovan men bara ett kort som genereras
   const turnCard = document.getElementById('turn');
   const turnImage = turnCard.getElementsByClassName('turnImages')
 
@@ -353,7 +356,7 @@ else if(buttonFunction==2){
   }
 }
 
-else if (buttonFunction==3){
+else if (buttonFunction==3){//samma kod som ovan men det sista kortet genereras på mitten
   const riverCard = document.getElementById('river');
   const riverImage = riverCard.getElementsByClassName('riverImages')
   
@@ -373,7 +376,7 @@ else if (buttonFunction==3){
       riverImage[m].src=allCards[randomNumberRiver]
   }
 }
-else if(buttonFunction==4){
+else if(buttonFunction==4){//Genererar 2 kort som motståndaren får. 
   const villanCards=document.getElementById('villan')
   const villanImage = villanCards.getElementsByClassName('villanImages')
   
@@ -392,7 +395,7 @@ else if(buttonFunction==4){
 }
 }
 }
-function bet(){
+function bet(){//Funktionen som sker när man bettar
   let minaChips=document.getElementsByClassName('antal-chips2')[0]
 
 
